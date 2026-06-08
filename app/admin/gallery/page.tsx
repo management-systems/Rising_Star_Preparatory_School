@@ -39,9 +39,6 @@ export default function AdminGallery() {
     });
   }, []);
 
-  const savePhotos = (updated: Photo[]) => {
-    setPhotos(updated);
-  };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const f = e.target.files?.[0];

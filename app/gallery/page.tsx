@@ -1,22 +1,27 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 
-const albums = [
-  { id: 'classroom', name: 'Classroom Activities', count: 8, color: 'from-[#F5C563]/30 to-[#E8763A]/15', photos: ['Circle time learning', 'Story reading session', 'Number recognition', 'Alphabet tracing', 'Group activity', 'Show & tell', 'Puzzle solving', 'Craft project'] },
-  { id: 'outdoor', name: 'Outdoor Play', count: 6, color: 'from-[#4CAF82]/20 to-[#4CAF82]/10', photos: ['Slide time', 'Sand pit play', 'Running race', 'Ball games', 'Nature walk', 'Garden exploration'] },
-  { id: 'annual', name: 'Annual Celebrations', count: 8, color: 'from-[#9C5FB5]/20 to-[#9C5FB5]/10', photos: ['Stage performance', 'Dance recital', 'Prize distribution', 'Group photo', 'Costume parade', 'Parent audience', 'Chief guest welcome', 'Closing ceremony'] },
-  { id: 'art', name: 'Art & Creativity', count: 6, color: 'from-[#E8763A]/20 to-[#F5C563]/15', photos: ['Finger painting', 'Clay modelling', 'Paper craft', 'Drawing session', 'Color mixing', 'Collage making'] },
-  { id: 'sports', name: 'Sports & Movement', count: 6, color: 'from-[#2B4C7E]/15 to-[#2B4C7E]/5', photos: ['Yoga session', 'Relay race', 'Balancing act', 'Hula hoop', 'Dance movement', 'Warm-up exercises'] },
-  { id: 'milestones', name: 'Learning Milestones', count: 6, color: 'from-[#4CAF82]/15 to-[#F5C563]/15', photos: ['First writing', 'Reading aloud', 'Math activity', 'Science experiment', 'Graduation day', 'Certificate ceremony'] },
-];
+interface Photo {
+  id: string;
+  name: string;
+  album: string;
+  preview: string;
+}
 
-const photoColors = ['bg-[#F5C563]/20', 'bg-[#4CAF82]/15', 'bg-[#E8763A]/15', 'bg-[#9C5FB5]/15', 'bg-[#2B4C7E]/10', 'bg-[#F5C563]/15', 'bg-[#4CAF82]/10', 'bg-[#E8763A]/10'];
+const albumFilters = ['All', 'Classroom Activities', 'Outdoor Play', 'Annual Day', 'Sports Day', 'Festival Celebrations'];
 
 export default function Gallery() {
-  const [activeAlbum, setActiveAlbum] = useState<string | null>(null);
-  const selected = albums.find(a => a.id === activeAlbum);
+  const [photos, setPhotos] = useState<Photo[]>([]);
+  const [filter, setFilter] = useState('All');
+
+  useEffect(() => {
+    const stored = localStorage.getItem('gallery_photos');
+    if (stored) setPhotos(JSON.parse(stored));
+  }, []);
+
+  const filtered = filter === 'All' ? photos : photos.filter(p => p.album === filter);
 
   return (
     <>
@@ -24,40 +29,47 @@ export default function Gallery() {
       <main className="max-w-6xl mx-auto px-4 py-14">
         <p className="text-[#E8763A] text-sm font-semibold uppercase tracking-wide text-center mb-2">Photo Gallery</p>
         <h1 className="text-4xl font-serif text-[#2B4C7E] text-center mb-3">Life at Grace Montessori</h1>
-        <p className="text-center text-gray-500 mb-12 max-w-lg mx-auto">See how children spend their time — learning through play, building friendships, and reaching milestones.</p>
+        <p className="text-center text-gray-500 mb-10 max-w-lg mx-auto">See how children spend their time — learning through play, building friendships, and reaching milestones.</p>
 
-        {!activeAlbum ? (
-          <>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-              {albums.map((a) => (
-                <button key={a.id} onClick={() => setActiveAlbum(a.id)} className={`bg-gradient-to-br ${a.color} rounded-xl h-44 flex flex-col items-center justify-center text-center p-4 hover:shadow-md transition-shadow border border-gray-100 cursor-pointer w-full`}>
-                  <span className="font-semibold text-gray-700 text-sm">{a.name}</span>
-                  <span className="text-xs text-gray-500 mt-1">{a.count} photos</span>
-                </button>
-              ))}
-            </div>
-            <p className="text-center text-xs text-gray-400 mt-8">Photos are shared with parent consent only.</p>
-          </>
-        ) : (
-          <>
-            <button onClick={() => setActiveAlbum(null)} className="mb-6 text-sm font-semibold text-[#2B4C7E] hover:text-[#E8763A] transition-colors">
-              ← Back to Albums
+        {/* Filter Buttons */}
+        <div className="flex flex-wrap justify-center gap-2 mb-10">
+          {albumFilters.map((a) => (
+            <button
+              key={a}
+              onClick={() => setFilter(a)}
+              className={`px-4 py-2 rounded-lg text-sm font-medium transition ${filter === a ? 'bg-[#2B4C7E] text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'}`}
+            >
+              {a}
             </button>
-            <h2 className="text-2xl font-serif text-[#2B4C7E] mb-6">{selected?.name}</h2>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-              {selected?.photos.map((photo, i) => (
-                <div key={photo} className={`${photoColors[i % photoColors.length]} rounded-xl h-40 flex items-center justify-center border border-gray-100`}>
-                  <span className="text-sm text-gray-600 font-medium text-center px-3">{photo}</span>
+          ))}
+        </div>
+
+        {/* Photos Grid */}
+        {filtered.length === 0 ? (
+          <div className="text-center py-16 border-2 border-dashed border-gray-200 rounded-2xl">
+            <svg className="w-14 h-14 text-gray-300 mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+            <p className="text-gray-500 font-medium">No photos yet</p>
+            <p className="text-sm text-gray-400 mt-1">{filter === 'All' ? 'Photos uploaded by admin will appear here' : `No photos in "${filter}" album`}</p>
+          </div>
+        ) : (
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            {filtered.map((photo) => (
+              <div key={photo.id} className="rounded-xl overflow-hidden border border-gray-100 hover:shadow-md transition-shadow">
+                <div className="aspect-square bg-gray-50">
+                  <img src={photo.preview} alt={photo.name} className="w-full h-full object-cover" />
                 </div>
-              ))}
-            </div>
-          </>
+                <div className="p-3">
+                  <p className="text-sm font-medium text-gray-800 truncate">{photo.name}</p>
+                  <p className="text-xs text-gray-400">{photo.album}</p>
+                </div>
+              </div>
+            ))}
+          </div>
         )}
+
+        <p className="text-center text-xs text-gray-400 mt-10">Photos are shared with parent consent only.</p>
       </main>
       <Footer />
     </>
   );
 }
-
-
-

@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
@@ -33,6 +33,16 @@ export default function AdminGallery() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const pathname = usePathname();
 
+  useEffect(() => {
+    const stored = localStorage.getItem('gallery_photos');
+    if (stored) setPhotos(JSON.parse(stored));
+  }, []);
+
+  const savePhotos = (updated: Photo[]) => {
+    setPhotos(updated);
+    localStorage.setItem('gallery_photos', JSON.stringify(updated));
+  };
+
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const f = e.target.files?.[0];
     if (f) {
@@ -43,27 +53,30 @@ export default function AdminGallery() {
 
   const handleUpload = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!file) return;
+    if (!file || !preview) return;
     setUploading(true);
-    setTimeout(() => {
+
+    const reader = new FileReader();
+    reader.onload = () => {
       const newPhoto: Photo = {
         id: Date.now().toString(),
         name: caption || file.name,
         album,
-        preview: preview || '',
+        preview: reader.result as string,
         uploadedAt: new Date().toLocaleDateString(),
       };
-      setPhotos([newPhoto, ...photos]);
+      savePhotos([newPhoto, ...photos]);
       setFile(null);
       setPreview(null);
       setCaption('');
       setUploading(false);
-    }, 1000);
+    };
+    reader.readAsDataURL(file);
   };
 
   const handleDelete = (id: string) => {
     if (confirm('Are you sure you want to delete this photo?')) {
-      setPhotos(photos.filter((p) => p.id !== id));
+      savePhotos(photos.filter((p) => p.id !== id));
     }
   };
 

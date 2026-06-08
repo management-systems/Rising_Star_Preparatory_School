@@ -23,9 +23,6 @@ export default function AdminEnquiries() {
     fetch('/api/enquiries').then(r => r.json()).then(data => setEnquiries(data));
   }, []);
 
-  const saveEnquiries = (updated: Enquiry[]) => {
-    setEnquiries(updated);
-  };
 
   const handleAdd = (e: React.FormEvent) => {
     e.preventDefault();

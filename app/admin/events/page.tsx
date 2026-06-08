@@ -21,9 +21,6 @@ export default function AdminEvents() {
     fetch('/api/events').then(r => r.json()).then(data => setEvents(data));
   }, []);
 
-  const saveEvents = (updated: Event[]) => {
-    setEvents(updated);
-  };
 
   const handleAdd = (e: React.FormEvent) => {
     e.preventDefault();

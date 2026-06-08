@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { connectDB } from '@/lib/mongodb';
 import Gallery from '@/models/Gallery';
+import cloudinary from '@/lib/cloudinary';
 
 export async function GET() {
   await connectDB();
@@ -10,8 +11,19 @@ export async function GET() {
 
 export async function POST(req: Request) {
   await connectDB();
-  const body = await req.json();
-  const photo = await Gallery.create(body);
+  const { name, album, imageUrl } = await req.json();
+
+  // Upload base64 image to Cloudinary
+  const uploadResult = await cloudinary.uploader.upload(imageUrl, {
+    folder: 'grace-montessori/gallery',
+  });
+
+  const photo = await Gallery.create({
+    name,
+    album,
+    imageUrl: uploadResult.secure_url,
+  });
+
   return NextResponse.json(photo, { status: 201 });
 }
 

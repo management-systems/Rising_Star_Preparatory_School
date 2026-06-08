@@ -13,7 +13,7 @@ export default function About() {
         {/* Story */}
         <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
           <div className="bg-gradient-to-br from-[#F5C563]/15 to-[#E8763A]/10 rounded-2xl h-64 flex items-center justify-center">
-            <div className="w-28 h-28 rounded-full overflow-hidden">
+            <div className="w-44 h-44 rounded-full overflow-hidden border-4 border-white shadow-lg">
               <img src="/logo.jpg" alt="Grace Montessori" className="w-full h-full object-cover" />
             </div>
           </div>
@@ -23,7 +23,7 @@ export default function About() {
               Grace Montessori Pre School & Day Care began with a vision to create the kind of school every parent dreams of — safe, warm, structured, and genuinely invested in each child&apos;s growth. Under the leadership of Mrs. Manju Sangwan, we have built a nurturing Montessori environment in the heart of Gurugram.
             </p>
             <p className="text-gray-600 leading-relaxed">
-              Today we serve 500+ families with a fully air-conditioned campus, live CCTV for parents, day care for working families, and a team of well-qualified Montessori-trained educators who truly care about each child.
+              Today we serve 100+ families with a fully air-conditioned campus, live CCTV for parents, day care for working families, and a team of well-qualified Montessori-trained educators who truly care about each child.
             </p>
           </div>
         </div>

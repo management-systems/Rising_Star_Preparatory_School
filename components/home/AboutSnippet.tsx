@@ -8,7 +8,7 @@ export default function AboutSnippet() {
       <div className="grid md:grid-cols-2 gap-12 items-center">
         <div className="bg-gradient-to-br from-[#F5C563]/20 to-[#E8763A]/10 rounded-2xl h-72 flex items-center justify-center relative overflow-hidden">
           <div className="text-center">
-            <div className="w-24 h-24 rounded-full mx-auto overflow-hidden mb-3">
+            <div className="w-40 h-40 rounded-full mx-auto overflow-hidden mb-3 border-4 border-white shadow-lg">
               <img src="/logo.jpg" alt="Grace Montessori" className="w-full h-full object-cover" />
             </div>
             <p className="text-sm text-gray-500 font-medium">Montessori School · Est. 2014</p>

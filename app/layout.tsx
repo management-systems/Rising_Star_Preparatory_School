@@ -4,7 +4,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Grace Montessori Pre School & Day Care",
   description: "A trusted Montessori-based early childhood education center for ages 1.5–6. Play-based learning, qualified educators, and a safe fully AC campus in Gurugram. Admissions open 2026–27.",
-  icons: { icon: "/favicon.svg" },
+  icons: { icon: "/logo.jpg" },
 };
 
 export default function RootLayout({

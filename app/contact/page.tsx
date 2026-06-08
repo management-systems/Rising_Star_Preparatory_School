@@ -10,7 +10,7 @@ export default function Contact() {
 
   const validatePhone = (phone: string) => {
     const cleaned = phone.replace(/[\s-]/g, '');
-    return /^[6-9]\d{9}$/.test(cleaned);
+    return /^\d{10}$/.test(cleaned);
   };
 
   const validateEmail = (email: string) => {

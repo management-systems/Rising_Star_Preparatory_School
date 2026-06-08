@@ -6,9 +6,25 @@ import Footer from "@/components/layout/Footer";
 export default function Contact() {
   const [form, setForm] = useState({ parentName: '', childName: '', childAge: '', email: '', phone: '', message: '' });
   const [sent, setSent] = useState(false);
+  const [errors, setErrors] = useState<{phone?: string; email?: string}>({});
+
+  const validatePhone = (phone: string) => {
+    const cleaned = phone.replace(/[\s-]/g, '');
+    return /^[6-9]\d{9}$/.test(cleaned);
+  };
+
+  const validateEmail = (email: string) => {
+    if (!email) return true;
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    const newErrors: {phone?: string; email?: string} = {};
+    if (!validatePhone(form.phone)) newErrors.phone = 'Enter a valid 10-digit Indian mobile number';
+    if (!validateEmail(form.email)) newErrors.email = 'Enter a valid email address';
+    if (Object.keys(newErrors).length > 0) { setErrors(newErrors); return; }
+    setErrors({});
     setSent(true);
   };
 
@@ -59,12 +75,14 @@ export default function Contact() {
                   </div>
                   <div>
                     <label className="text-sm font-medium text-gray-700 block mb-1">Phone Number *</label>
-                    <input type="tel" required value={form.phone} onChange={(e) => setForm({...form, phone: e.target.value})} className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:border-[#2B4C7E] text-sm" />
+                    <input type="tel" required value={form.phone} onChange={(e) => { setForm({...form, phone: e.target.value}); setErrors({...errors, phone: undefined}); }} className={`w-full px-4 py-2.5 border rounded-lg focus:outline-none focus:border-[#2B4C7E] text-sm ${errors.phone ? 'border-red-300' : 'border-gray-200'}`} placeholder="e.g. 9876543210" />
+                    {errors.phone && <p className="text-xs text-red-500 mt-1">{errors.phone}</p>}
                   </div>
                 </div>
                 <div>
                   <label className="text-sm font-medium text-gray-700 block mb-1">Email Address</label>
-                  <input type="email" value={form.email} onChange={(e) => setForm({...form, email: e.target.value})} className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:border-[#2B4C7E] text-sm" />
+                  <input type="email" value={form.email} onChange={(e) => { setForm({...form, email: e.target.value}); setErrors({...errors, email: undefined}); }} className={`w-full px-4 py-2.5 border rounded-lg focus:outline-none focus:border-[#2B4C7E] text-sm ${errors.email ? 'border-red-300' : 'border-gray-200'}`} placeholder="parent@example.com" />
+                  {errors.email && <p className="text-xs text-red-500 mt-1">{errors.email}</p>}
                 </div>
                 <div>
                   <label className="text-sm font-medium text-gray-700 block mb-1">Any specific questions or requirements?</label>

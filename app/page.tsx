@@ -8,6 +8,7 @@ import StatsCounter from "@/components/home/StatsCounter";
 import Gallery from "@/components/home/PhotoHighlights";
 import Testimonials from "@/components/home/Testimonials";
 import ContactStrip from "@/components/home/NewsletterSection";
+import ContactPopup from "@/components/home/ContactPopup";
 
 export default function Home() {
   return (
@@ -24,9 +25,7 @@ export default function Home() {
         <ContactStrip />
       </main>
       <Footer />
+      <ContactPopup />
     </>
   );
 }
-
-
-

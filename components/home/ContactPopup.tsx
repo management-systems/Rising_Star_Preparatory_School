@@ -20,6 +20,21 @@ export default function ContactPopup() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!/^\d{10}$/.test(form.phone.replace(/[\s-]/g, ''))) return;
+
+    // Save to MongoDB via API
+    fetch('/api/enquiries', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        parentName: form.name,
+        childName: 'N/A',
+        childAge: '',
+        phone: form.phone,
+        email: '',
+        message: 'Callback request from popup',
+      }),
+    });
+
     setSubmitted(true);
     setShow(false);
   };

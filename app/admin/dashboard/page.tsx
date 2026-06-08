@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
@@ -14,7 +14,12 @@ const sidebarItems = [
 
 export default function AdminDashboard() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [stats, setStats] = useState({ students: 0, enquiries: 0, photos: 0, events: 0 });
   const pathname = usePathname();
+
+  useEffect(() => {
+    fetch('/api/stats').then(r => r.json()).then(data => setStats(data));
+  }, []);
 
   return (
     <div className="min-h-screen bg-[#F0F2F5] flex">
@@ -92,19 +97,19 @@ export default function AdminDashboard() {
           {/* Stats */}
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
             <div className="bg-blue-50 text-[#2B4C7E] border border-blue-100 rounded-xl p-5">
-              <p className="text-2xl font-bold">0</p>
+              <p className="text-2xl font-bold">{stats.students}</p>
               <p className="text-sm font-medium mt-1">Total Students</p>
             </div>
             <div className="bg-orange-50 text-[#E8763A] border border-orange-100 rounded-xl p-5">
-              <p className="text-2xl font-bold">0</p>
+              <p className="text-2xl font-bold">{stats.enquiries}</p>
               <p className="text-sm font-medium mt-1">Enquiries</p>
             </div>
             <div className="bg-green-50 text-[#4CAF82] border border-green-100 rounded-xl p-5">
-              <p className="text-2xl font-bold">0</p>
+              <p className="text-2xl font-bold">{stats.photos}</p>
               <p className="text-sm font-medium mt-1">Gallery Photos</p>
             </div>
             <div className="bg-purple-50 text-[#9C5FB5] border border-purple-100 rounded-xl p-5">
-              <p className="text-2xl font-bold">0</p>
+              <p className="text-2xl font-bold">{stats.events}</p>
               <p className="text-sm font-medium mt-1">Events</p>
             </div>
           </div>

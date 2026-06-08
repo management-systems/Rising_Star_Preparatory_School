@@ -17,16 +17,14 @@ export default function Events() {
   const [events, setEvents] = useState<Event[]>([]);
 
   useEffect(() => {
-    const stored = localStorage.getItem('school_events');
-    if (stored) {
-      const parsed: Event[] = JSON.parse(stored);
-      // Auto-update status based on date
-      const updated = parsed.map(ev => ({
+    fetch('/api/events').then(r => r.json()).then((data: Event[]) => {
+      const updated = data.map(ev => ({
         ...ev,
+        id: (ev as any)._id || ev.id,
         status: new Date(ev.date) >= new Date() ? 'Upcoming' : 'Completed'
       }));
       setEvents(updated);
-    }
+    });
   }, []);
 
   const upcoming = events.filter(e => e.status === 'Upcoming');

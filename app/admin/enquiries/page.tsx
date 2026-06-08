@@ -20,29 +20,44 @@ export default function AdminEnquiries() {
   const [form, setForm] = useState({ parentName: '', childName: '', childAge: '', phone: '', email: '', message: '' });
 
   useEffect(() => {
-    const stored = localStorage.getItem('school_enquiries');
-    if (stored) setEnquiries(JSON.parse(stored));
+    fetch('/api/enquiries').then(r => r.json()).then(data => setEnquiries(data));
   }, []);
 
   const saveEnquiries = (updated: Enquiry[]) => {
     setEnquiries(updated);
-    localStorage.setItem('school_enquiries', JSON.stringify(updated));
   };
 
   const handleAdd = (e: React.FormEvent) => {
     e.preventDefault();
-    const newEnquiry: Enquiry = { id: Date.now().toString(), ...form, status: 'New', date: new Date().toLocaleDateString() };
-    saveEnquiries([newEnquiry, ...enquiries]);
+    fetch('/api/enquiries', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ ...form, status: 'New' }),
+    }).then(r => r.json()).then(newEq => {
+      setEnquiries([newEq, ...enquiries]);
+    });
     setForm({ parentName: '', childName: '', childAge: '', phone: '', email: '', message: '' });
     setShowForm(false);
   };
 
   const updateStatus = (id: string, status: Enquiry['status']) => {
-    saveEnquiries(enquiries.map(eq => eq.id === id ? { ...eq, status } : eq));
+    fetch('/api/enquiries', {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id, status }),
+    });
+    setEnquiries(enquiries.map(eq => eq.id === id || (eq as any)._id === id ? { ...eq, status } : eq));
   };
 
   const handleDelete = (id: string) => {
-    if (confirm('Delete this enquiry?')) saveEnquiries(enquiries.filter(eq => eq.id !== id));
+    if (confirm('Delete this enquiry?')) {
+      fetch('/api/enquiries', {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id }),
+      });
+      setEnquiries(enquiries.filter(eq => eq.id !== id && (eq as any)._id !== id));
+    }
   };
 
   const sidebarItems = [

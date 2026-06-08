@@ -34,13 +34,13 @@ export default function AdminGallery() {
   const pathname = usePathname();
 
   useEffect(() => {
-    const stored = localStorage.getItem('gallery_photos');
-    if (stored) setPhotos(JSON.parse(stored));
+    fetch('/api/gallery').then(r => r.json()).then(data => {
+      setPhotos(data.map((p: any) => ({ ...p, id: p._id || p.id })));
+    });
   }, []);
 
   const savePhotos = (updated: Photo[]) => {
     setPhotos(updated);
-    localStorage.setItem('gallery_photos', JSON.stringify(updated));
   };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -58,14 +58,14 @@ export default function AdminGallery() {
 
     const reader = new FileReader();
     reader.onload = () => {
-      const newPhoto: Photo = {
-        id: Date.now().toString(),
-        name: caption || file.name,
-        album,
-        preview: reader.result as string,
-        uploadedAt: new Date().toLocaleDateString(),
-      };
-      savePhotos([newPhoto, ...photos]);
+      const photoData = { name: caption || file.name, album, imageUrl: reader.result as string };
+      fetch('/api/gallery', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(photoData),
+      }).then(r => r.json()).then(newPhoto => {
+        setPhotos([{ ...newPhoto, id: newPhoto._id, preview: newPhoto.imageUrl, uploadedAt: new Date().toLocaleDateString() }, ...photos]);
+      });
       setFile(null);
       setPreview(null);
       setCaption('');
@@ -76,7 +76,12 @@ export default function AdminGallery() {
 
   const handleDelete = (id: string) => {
     if (confirm('Are you sure you want to delete this photo?')) {
-      savePhotos(photos.filter((p) => p.id !== id));
+      fetch('/api/gallery', {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id }),
+      });
+      setPhotos(photos.filter((p) => p.id !== id && (p as any)._id !== id));
     }
   };
 

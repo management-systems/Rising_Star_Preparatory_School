@@ -26,20 +26,20 @@ export default function Contact() {
     if (Object.keys(newErrors).length > 0) { setErrors(newErrors); return; }
     setErrors({});
 
-    // Save to localStorage so admin can see it
+    // Save to database
     const enquiry = {
-      id: Date.now().toString(),
       parentName: form.parentName,
       childName: form.childName,
       childAge: form.childAge,
       phone: form.phone,
       email: form.email,
       message: form.message,
-      status: 'New',
-      date: new Date().toLocaleDateString(),
     };
-    const existing = JSON.parse(localStorage.getItem('school_enquiries') || '[]');
-    localStorage.setItem('school_enquiries', JSON.stringify([enquiry, ...existing]));
+    fetch('/api/enquiries', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(enquiry),
+    });
 
     setSent(true);
   };

@@ -18,30 +18,47 @@ export default function AdminEvents() {
   const [form, setForm] = useState({ title: '', date: '', time: '', venue: '', description: '' });
 
   useEffect(() => {
-    const stored = localStorage.getItem('school_events');
-    if (stored) setEvents(JSON.parse(stored));
+    fetch('/api/events').then(r => r.json()).then(data => setEvents(data));
   }, []);
 
   const saveEvents = (updated: Event[]) => {
     setEvents(updated);
-    localStorage.setItem('school_events', JSON.stringify(updated));
   };
 
   const handleAdd = (e: React.FormEvent) => {
     e.preventDefault();
     const status = new Date(form.date) >= new Date() ? 'Upcoming' : 'Completed';
-    const newEvent: Event = { id: Date.now().toString(), ...form, status };
-    saveEvents([newEvent, ...events]);
+    fetch('/api/events', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ ...form, status }),
+    }).then(r => r.json()).then(newEv => {
+      setEvents([newEv, ...events]);
+    });
     setForm({ title: '', date: '', time: '', venue: '', description: '' });
     setShowForm(false);
   };
 
   const toggleStatus = (id: string) => {
-    saveEvents(events.map(ev => ev.id === id ? { ...ev, status: ev.status === 'Upcoming' ? 'Completed' : 'Upcoming' } : ev));
+    const ev = events.find(e => e.id === id || (e as any)._id === id);
+    const newStatus = ev?.status === 'Upcoming' ? 'Completed' : 'Upcoming';
+    fetch('/api/events', {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id, status: newStatus }),
+    });
+    setEvents(events.map(e => (e.id === id || (e as any)._id === id) ? { ...e, status: newStatus } : e));
   };
 
   const handleDelete = (id: string) => {
-    if (confirm('Delete this event?')) saveEvents(events.filter(ev => ev.id !== id));
+    if (confirm('Delete this event?')) {
+      fetch('/api/events', {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id }),
+      });
+      setEvents(events.filter(ev => ev.id !== id && (ev as any)._id !== id));
+    }
   };
 
   return (

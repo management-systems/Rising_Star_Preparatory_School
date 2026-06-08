@@ -39,7 +39,7 @@ export default function HeroSlider() {
       </div>
 
       <div className="relative z-10 text-center max-w-3xl">
-        <p className="text-[#F5C563] text-sm font-semibold uppercase tracking-wider mb-4">Rising Star Preparatory School</p>
+        <p className="text-[#F5C563] text-sm font-semibold uppercase tracking-wider mb-4">Grace Montessori Pre School & Day Care</p>
         <h1 className="text-3xl sm:text-5xl font-serif font-bold text-white leading-tight mb-5">{slide.title}</h1>
         <p className="text-lg text-white/80 mb-8 max-w-xl mx-auto">{slide.subtitle}</p>
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
@@ -60,3 +60,6 @@ export default function HeroSlider() {
     </section>
   );
 }
+
+
+

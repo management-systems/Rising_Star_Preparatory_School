@@ -48,7 +48,7 @@ export default function AdminEnquiries() {
   return (
     <div className="min-h-screen bg-[#F0F2F5] flex">
       <aside className="hidden lg:flex lg:flex-col w-64 bg-white border-r border-gray-200">
-        <div className="h-16 flex items-center px-6 border-b border-gray-100"><div className="w-8 h-8 bg-[#2B4C7E] rounded-lg flex items-center justify-center mr-3"><span className="text-white font-bold text-xs">RS</span></div><div className="leading-tight"><p className="font-bold text-sm text-gray-800">Rising Star</p><p className="text-[10px] text-gray-400">Admin Panel</p></div></div>
+        <div className="h-16 flex items-center px-6 border-b border-gray-100"><div className="w-8 h-8 rounded-lg overflow-hidden mr-3\u0022\u003E\u003Cimg src=\u0022/logo.jpg\u0022 alt=\u0022Logo\u0022 className=\u0022w-full h-full object-cover\u0022 /\u003E</div><div className="leading-tight"><p className="font-bold text-sm text-gray-800">Grace Montessori</p><p className="text-[10px] text-gray-400">Admin Panel</p></div></div>
         <nav className="flex-1 px-3 py-4 space-y-1">{sidebarItems.map((item) => (<Link key={item.label} href={item.href} className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition ${'/admin/enquiries' === item.href ? 'bg-[#2B4C7E]/5 text-[#2B4C7E]' : 'text-gray-600 hover:bg-gray-50'}`}><svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d={item.icon} /></svg>{item.label}</Link>))}</nav>
         <div className="px-3 py-4 border-t border-gray-100"><Link href="/" className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-gray-500 hover:bg-gray-50"><svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>Back to Website</Link></div>
       </aside>
@@ -116,3 +116,7 @@ export default function AdminEnquiries() {
     </div>
   );
 }
+
+
+
+

@@ -14,13 +14,13 @@ export default function About() {
         <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
           <div className="bg-gradient-to-br from-[#F5C563]/15 to-[#E8763A]/10 rounded-2xl h-64 flex items-center justify-center">
             <div className="w-28 h-28 bg-[#2B4C7E] rounded-full flex items-center justify-center">
-              <span className="text-white font-serif font-bold text-3xl">RS</span>
+              \u003Cimg src=\u0022/logo.jpg\u0022 alt=\u0022Grace Montessori\u0022 className=\u0022w-full h-full object-cover rounded-full\u0022 /\u003E
             </div>
           </div>
           <div>
             <h2 className="text-2xl font-serif text-[#2B4C7E] mb-4">Our Story</h2>
             <p className="text-gray-600 leading-relaxed mb-3">
-              Rising Star Preparatory School began with a vision to create the kind of school every parent dreams of — safe, warm, structured, and genuinely invested in each child&apos;s growth. Under the leadership of Mrs. Manju Sangwan, we have built a nurturing Montessori environment in the heart of Gurugram.
+              Grace Montessori Pre School & Day Care began with a vision to create the kind of school every parent dreams of — safe, warm, structured, and genuinely invested in each child&apos;s growth. Under the leadership of Mrs. Manju Sangwan, we have built a nurturing Montessori environment in the heart of Gurugram.
             </p>
             <p className="text-gray-600 leading-relaxed">
               Today we serve 500+ families with a fully air-conditioned campus, live CCTV for parents, day care for working families, and a team of well-qualified Montessori-trained educators who truly care about each child.
@@ -55,7 +55,7 @@ export default function About() {
             <div className="md:col-span-2">
               <h2 className="text-xl font-serif text-[#2B4C7E] mb-3">From the Founder&apos;s Desk</h2>
               <p className="text-gray-600 italic leading-relaxed mb-4">
-                &ldquo;Montessori activities transform learning into a journey of discovery and inspiration. At Rising Star, we don&apos;t just educate children — we nurture their natural curiosity in a safe, caring, and stimulating environment.&rdquo;
+                &ldquo;Montessori activities transform learning into a journey of discovery and inspiration. At Grace Montessori, we don&apos;t just educate children — we nurture their natural curiosity in a safe, caring, and stimulating environment.&rdquo;
               </p>
               <p className="font-bold text-gray-800">Mrs. Manju Sangwan</p>
               <p className="text-sm text-gray-500">Founder & Principal · Montessori Certified Educator</p>
@@ -87,3 +87,6 @@ export default function About() {
     </>
   );
 }
+
+
+

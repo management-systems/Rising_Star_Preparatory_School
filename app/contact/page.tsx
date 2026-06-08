@@ -82,7 +82,7 @@ export default function Contact() {
           <div className="md:col-span-2 space-y-5">
             <div className="bg-[#2B4C7E]/5 border border-[#2B4C7E]/10 rounded-xl p-5">
               <h3 className="font-semibold text-[#2B4C7E] mb-2">Visit Our Campus</h3>
-              <p className="text-sm text-gray-600">Rising Star Preparatory School<br/>377/28, Near Jyoti Park, Gali No. 7<br/>Near Sector 7 Extension, Gurugram, Haryana</p>
+              <p className="text-sm text-gray-600">Grace Montessori Pre School & Day Care<br/>377/28, Near Jyoti Park, Gali No. 7<br/>Near Sector 7 Extension, Gurugram, Haryana</p>
             </div>
             <div className="bg-[#E8763A]/5 border border-[#E8763A]/10 rounded-xl p-5">
               <h3 className="font-semibold text-[#E8763A] mb-2">Call Principal</h3>
@@ -90,7 +90,7 @@ export default function Contact() {
             </div>
             <div className="bg-[#4CAF82]/5 border border-[#4CAF82]/10 rounded-xl p-5">
               <h3 className="font-semibold text-[#4CAF82] mb-2">Email Us</h3>
-              <p className="text-sm text-gray-600">info@risingstarprep.edu.in</p>
+              <p className="text-sm text-gray-600">info@gracemontessori.edu.in</p>
             </div>
             <div className="bg-gray-50 border border-gray-100 rounded-xl p-5">
               <h3 className="font-semibold text-gray-700 mb-2">Office Hours</h3>
@@ -103,3 +103,6 @@ export default function Contact() {
     </>
   );
 }
+
+
+

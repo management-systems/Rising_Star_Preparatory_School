@@ -21,11 +21,11 @@ export default function AdminDashboard() {
       {/* Sidebar - Desktop */}
       <aside className="hidden lg:flex lg:flex-col w-64 bg-white border-r border-gray-200">
         <div className="h-16 flex items-center px-6 border-b border-gray-100">
-          <div className="w-8 h-8 bg-[#2B4C7E] rounded-lg flex items-center justify-center mr-3">
-            <span className="text-white font-bold text-xs">RS</span>
+          <div className="w-8 h-8 rounded-lg overflow-hidden mr-3">
+            <img src="/logo.jpg" alt="RS" className="w-full h-full object-cover" />
           </div>
           <div className="leading-tight">
-            <p className="font-bold text-sm text-gray-800">Rising Star</p>
+            <p className="font-bold text-sm text-gray-800">Grace Montessori</p>
             <p className="text-[10px] text-gray-400">Admin Panel</p>
           </div>
         </div>
@@ -133,3 +133,7 @@ export default function AdminDashboard() {
     </div>
   );
 }
+
+
+
+

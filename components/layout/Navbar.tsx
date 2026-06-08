@@ -18,11 +18,9 @@ export default function Navbar() {
     <header className="sticky top-0 z-50 bg-white border-b border-gray-100 shadow-sm">
       <div className="max-w-6xl mx-auto px-4 flex h-16 items-center justify-between">
         <Link href="/" className="flex items-center gap-2">
-          <div className="w-9 h-9 rounded-full bg-[#2B4C7E] flex items-center justify-center">
-            <span className="text-white font-bold text-sm">RS</span>
-          </div>
+          <img src="/logo.jpg" alt="Grace Montessori Pre School & Day Care" className="w-10 h-10 rounded-full object-cover" />
           <div className="leading-tight">
-            <span className="font-serif font-bold text-[#2B4C7E] text-base block">Rising Star</span>
+            <span className="font-serif font-bold text-[#2B4C7E] text-base block">Grace Montessori</span>
             <span className="text-[10px] text-gray-500 tracking-wide uppercase">Preparatory School</span>
           </div>
         </Link>
@@ -62,3 +60,6 @@ export default function Navbar() {
     </header>
   );
 }
+
+
+

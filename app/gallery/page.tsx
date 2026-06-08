@@ -23,7 +23,7 @@ export default function Gallery() {
       <Navbar />
       <main className="max-w-6xl mx-auto px-4 py-14">
         <p className="text-[#E8763A] text-sm font-semibold uppercase tracking-wide text-center mb-2">Photo Gallery</p>
-        <h1 className="text-4xl font-serif text-[#2B4C7E] text-center mb-3">Life at Rising Star</h1>
+        <h1 className="text-4xl font-serif text-[#2B4C7E] text-center mb-3">Life at Grace Montessori</h1>
         <p className="text-center text-gray-500 mb-12 max-w-lg mx-auto">See how children spend their time — learning through play, building friendships, and reaching milestones.</p>
 
         {!activeAlbum ? (
@@ -58,3 +58,6 @@ export default function Gallery() {
     </>
   );
 }
+
+
+

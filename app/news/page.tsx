@@ -7,7 +7,7 @@ export default function News() {
       <Navbar />
       <main className="max-w-5xl mx-auto px-4 py-14">
         <h1 className="text-4xl font-serif text-primary text-center mb-4">News & Updates 📰</h1>
-        <p className="text-center text-muted mb-12">Latest happenings at Rising Star</p>
+        <p className="text-center text-muted mb-12">Latest happenings at Grace Montessori</p>
         <div className="space-y-4">
           {[
             { title: 'Admissions Open for 2025-26! 🎉', date: 'Feb 2025', desc: 'Limited seats available for Playgroup, Nursery, LKG and UKG.' },
@@ -26,3 +26,6 @@ export default function News() {
     </>
   );
 }
+
+
+

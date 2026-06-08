@@ -162,8 +162,8 @@ function AdminShell({ title, children }: { title: string; children: React.ReactN
     <div className="min-h-screen bg-[#F0F2F5] flex">
       <aside className="hidden lg:flex lg:flex-col w-64 bg-white border-r border-gray-200">
         <div className="h-16 flex items-center px-6 border-b border-gray-100">
-          <div className="w-8 h-8 bg-[#2B4C7E] rounded-lg flex items-center justify-center mr-3"><span className="text-white font-bold text-xs">RS</span></div>
-          <div className="leading-tight"><p className="font-bold text-sm text-gray-800">Rising Star</p><p className="text-[10px] text-gray-400">Admin Panel</p></div>
+          <div className="w-8 h-8 rounded-lg overflow-hidden mr-3\u0022\u003E\u003Cimg src=\u0022/logo.jpg\u0022 alt=\u0022Logo\u0022 className=\u0022w-full h-full object-cover\u0022 /\u003E</div>
+          <div className="leading-tight"><p className="font-bold text-sm text-gray-800">Grace Montessori</p><p className="text-[10px] text-gray-400">Admin Panel</p></div>
         </div>
         <nav className="flex-1 px-3 py-4 space-y-1">
           {sidebarItems.map((item) => (
@@ -194,3 +194,7 @@ function AdminShell({ title, children }: { title: string; children: React.ReactN
     </div>
   );
 }
+
+
+
+

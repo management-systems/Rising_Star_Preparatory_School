@@ -9,7 +9,7 @@ export default function AboutSnippet() {
         <div className="bg-gradient-to-br from-[#F5C563]/20 to-[#E8763A]/10 rounded-2xl h-72 flex items-center justify-center relative overflow-hidden">
           <div className="text-center">
             <div className="w-24 h-24 bg-[#2B4C7E] rounded-full mx-auto flex items-center justify-center mb-3">
-              <span className="text-white font-serif font-bold text-2xl">RS</span>
+              \u003Cimg src=\u0022/logo.jpg\u0022 alt=\u0022Grace Montessori\u0022 className=\u0022w-full h-full object-cover rounded-full\u0022 /\u003E
             </div>
             <p className="text-sm text-gray-500 font-medium">Montessori School · Est. 2014</p>
           </div>
@@ -18,7 +18,7 @@ export default function AboutSnippet() {
           <p className="text-[#E8763A] text-sm font-semibold uppercase tracking-wide mb-2">About Our School</p>
           <h2 className="text-3xl font-serif text-[#2B4C7E] mb-4">A Montessori Environment Where Children Thrive</h2>
           <p className="text-gray-600 leading-relaxed mb-4">
-            Rising Star is a trusted Montessori-based early childhood education center. Our fully air-conditioned campus with live CCTV access, qualified Montessori-trained teachers, and day care facility gives your child the safest and most enriching start to life.
+            Grace Montessori is a trusted Montessori-based early childhood education center. Our fully air-conditioned campus with live CCTV access, qualified Montessori-trained teachers, and day care facility gives your child the safest and most enriching start to life.
           </p>
           <div className="flex flex-wrap gap-2 mb-5">
             <span className="px-3 py-1.5 bg-[#2B4C7E]/8 text-[#2B4C7E] text-xs rounded-lg font-semibold border border-[#2B4C7E]/15">Montessori Method</span>
@@ -34,3 +34,6 @@ export default function AboutSnippet() {
     </section>
   );
 }
+
+
+

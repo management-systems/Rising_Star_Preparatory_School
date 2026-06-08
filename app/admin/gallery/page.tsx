@@ -78,7 +78,7 @@ export default function AdminGallery() {
             <span className="text-white font-bold text-xs">RS</span>
           </div>
           <div className="leading-tight">
-            <p className="font-bold text-sm text-gray-800">Rising Star</p>
+            <p className="font-bold text-sm text-gray-800">Grace Montessori</p>
             <p className="text-[10px] text-gray-400">Admin Panel</p>
           </div>
         </div>
@@ -215,3 +215,7 @@ export default function AdminGallery() {
     </div>
   );
 }
+
+
+
+

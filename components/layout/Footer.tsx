@@ -8,10 +8,8 @@ export default function Footer() {
       <div className="max-w-6xl mx-auto grid sm:grid-cols-2 lg:grid-cols-4 gap-8 text-sm">
         <div>
           <div className="flex items-center gap-2 mb-3">
-            <div className="w-8 h-8 rounded-full bg-[#2B4C7E] flex items-center justify-center">
-              <span className="text-white font-bold text-xs">RS</span>
-            </div>
-            <span className="font-serif font-bold text-white">Rising Star</span>
+            <img src="/logo.jpg" alt="Grace Montessori Pre School & Day Care" className="w-9 h-9 rounded-full object-cover" />
+            <span className="font-serif font-bold text-white">Grace Montessori</span>
           </div>
           <p className="text-gray-400 leading-relaxed">A trusted early childhood education center building strong foundations for your child&apos;s future.</p>
         </div>
@@ -38,15 +36,18 @@ export default function Footer() {
           <div className="space-y-2 text-gray-400">
             <p>377/28, Near Jyoti Park, Gali No. 7,<br/>Near Sector 7 Extension,<br/>Gurugram, Haryana, India</p>
             <p>+91 99106-30184</p>
-            <p>info@risingstarprep.edu.in</p>
+            <p>info@gracemontessori.edu.in</p>
             <p className="text-xs text-gray-500 mt-2">Mon–Fri: 8:00 AM – 1:00 PM<br/>Sat: 8:00 AM – 12:00 PM</p>
           </div>
         </div>
       </div>
       <div className="max-w-6xl mx-auto mt-10 pt-5 border-t border-gray-700 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-500">
-        <p>© {new Date().getFullYear()} Rising Star Preparatory School. All rights reserved.</p>
+        <p>© {new Date().getFullYear()} Grace Montessori Pre School & Day Care. All rights reserved.</p>
         <Link href="/admin/login" className="mt-2 sm:mt-0 hover:text-[#F5C563] transition">Staff Login</Link>
       </div>
     </footer>
   );
 }
+
+
+

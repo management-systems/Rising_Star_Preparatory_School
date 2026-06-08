@@ -34,3 +34,6 @@ export default function PhotoHighlights() {
     </section>
   );
 }
+
+
+

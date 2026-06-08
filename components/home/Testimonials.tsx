@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 
 const testimonials = [
   { parent: 'Priya Sharma', child: 'Aarav, Nursery', rating: 5, msg: 'The transformation in my son has been remarkable. He went from being hesitant to drop-off to running in with excitement every morning. The teachers genuinely care.' },
-  { parent: 'Rahul & Neha Gupta', child: 'Anaya, LKG', rating: 5, msg: 'We researched many schools before choosing Rising Star. The structured curriculum, regular updates, and the visible development in Anaya confirmed we made the right choice.' },
+  { parent: 'Rahul & Neha Gupta', child: 'Anaya, LKG', rating: 5, msg: 'We researched many schools before choosing Grace Montessori. The structured curriculum, regular updates, and the visible development in Anaya confirmed we made the right choice.' },
   { parent: 'Dr. Sneha Patel', child: 'Vihaan, Playgroup', rating: 5, msg: 'As a pediatrician, I appreciate how well the school balances learning with age-appropriate play. The hygiene standards and nutrition focus are exactly what I expect.' },
   { parent: 'Amit Verma', child: 'Ishaan, UKG', rating: 4, msg: 'Great school with dedicated staff. My son has become very confident and social. The only thing I wish is slightly longer school hours, but overall very satisfied.' },
   { parent: 'Kavita Joshi', child: 'Myra, Nursery', rating: 4, msg: 'The school provides a wonderful environment for young kids. Communication with parents is excellent. Would love to see more outdoor sports options in future.' },
@@ -38,3 +38,6 @@ export default function Testimonials() {
     </section>
   );
 }
+
+
+

@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Rising Star Preparatory School",
-  description: "A trusted early childhood education center for ages 2–6. Play-based learning, qualified educators, and a safe campus. Admissions open for 2026–27.",
+  title: "Grace Montessori Pre School & Day Care",
+  description: "A trusted Montessori-based early childhood education center for ages 1.5–6. Play-based learning, qualified educators, and a safe fully AC campus in Gurugram. Admissions open 2026–27.",
   icons: { icon: "/favicon.svg" },
 };
 
@@ -23,3 +23,6 @@ export default function RootLayout({
     </html>
   );
 }
+
+
+

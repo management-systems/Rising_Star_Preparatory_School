@@ -40,11 +40,11 @@ export default function AdminLogin() {
         <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
           {/* Header */}
           <div className="bg-[#2B4C7E] px-8 py-8 text-center">
-            <div className="w-14 h-14 bg-white/10 rounded-full mx-auto flex items-center justify-center mb-3 border border-white/20">
-              <span className="text-white font-serif font-bold text-xl">RS</span>
+            <div className="w-14 h-14 bg-white/10 rounded-full mx-auto flex items-center justify-center mb-3 border border-white/20 overflow-hidden">
+              <img src="/logo.jpg" alt="Grace Montessori" className="w-full h-full object-cover" />
             </div>
             <h1 className="text-white font-serif text-xl font-bold">Admin Panel</h1>
-            <p className="text-white/60 text-sm mt-1">Rising Star Preparatory School</p>
+            <p className="text-white/60 text-sm mt-1">Grace Montessori Pre School & Day Care</p>
           </div>
 
           {/* Form */}
@@ -57,7 +57,7 @@ export default function AdminLogin() {
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="admin@risingstar.edu.in"
+                  placeholder="admin@gracemontessori.edu.in"
                   className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#2B4C7E]/20 focus:border-[#2B4C7E] text-sm transition"
                 />
               </div>
@@ -97,3 +97,7 @@ export default function AdminLogin() {
     </div>
   );
 }
+
+
+
+

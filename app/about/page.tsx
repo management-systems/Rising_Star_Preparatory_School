@@ -13,8 +13,8 @@ export default function About() {
         {/* Story */}
         <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
           <div className="bg-gradient-to-br from-[#F5C563]/15 to-[#E8763A]/10 rounded-2xl h-64 flex items-center justify-center">
-            <div className="w-28 h-28 bg-[#2B4C7E] rounded-full flex items-center justify-center">
-              \u003Cimg src=\u0022/logo.jpg\u0022 alt=\u0022Grace Montessori\u0022 className=\u0022w-full h-full object-cover rounded-full\u0022 /\u003E
+            <div className="w-28 h-28 rounded-full overflow-hidden">
+              <img src="/logo.jpg" alt="Grace Montessori" className="w-full h-full object-cover" />
             </div>
           </div>
           <div>

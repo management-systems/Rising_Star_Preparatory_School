@@ -21,10 +21,26 @@ export default function Contact() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const newErrors: {phone?: string; email?: string} = {};
-    if (!validatePhone(form.phone)) newErrors.phone = 'Enter a valid 10-digit Indian mobile number';
+    if (!validatePhone(form.phone)) newErrors.phone = 'Enter a valid 10-digit mobile number';
     if (!validateEmail(form.email)) newErrors.email = 'Enter a valid email address';
     if (Object.keys(newErrors).length > 0) { setErrors(newErrors); return; }
     setErrors({});
+
+    // Save to localStorage so admin can see it
+    const enquiry = {
+      id: Date.now().toString(),
+      parentName: form.parentName,
+      childName: form.childName,
+      childAge: form.childAge,
+      phone: form.phone,
+      email: form.email,
+      message: form.message,
+      status: 'New',
+      date: new Date().toLocaleDateString(),
+    };
+    const existing = JSON.parse(localStorage.getItem('school_enquiries') || '[]');
+    localStorage.setItem('school_enquiries', JSON.stringify([enquiry, ...existing]));
+
     setSent(true);
   };
 

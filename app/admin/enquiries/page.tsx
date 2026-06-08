@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 
 interface Enquiry {
@@ -19,20 +19,30 @@ export default function AdminEnquiries() {
   const [showForm, setShowForm] = useState(false);
   const [form, setForm] = useState({ parentName: '', childName: '', childAge: '', phone: '', email: '', message: '' });
 
+  useEffect(() => {
+    const stored = localStorage.getItem('school_enquiries');
+    if (stored) setEnquiries(JSON.parse(stored));
+  }, []);
+
+  const saveEnquiries = (updated: Enquiry[]) => {
+    setEnquiries(updated);
+    localStorage.setItem('school_enquiries', JSON.stringify(updated));
+  };
+
   const handleAdd = (e: React.FormEvent) => {
     e.preventDefault();
     const newEnquiry: Enquiry = { id: Date.now().toString(), ...form, status: 'New', date: new Date().toLocaleDateString() };
-    setEnquiries([newEnquiry, ...enquiries]);
+    saveEnquiries([newEnquiry, ...enquiries]);
     setForm({ parentName: '', childName: '', childAge: '', phone: '', email: '', message: '' });
     setShowForm(false);
   };
 
   const updateStatus = (id: string, status: Enquiry['status']) => {
-    setEnquiries(enquiries.map(eq => eq.id === id ? { ...eq, status } : eq));
+    saveEnquiries(enquiries.map(eq => eq.id === id ? { ...eq, status } : eq));
   };
 
   const handleDelete = (id: string) => {
-    if (confirm('Delete this enquiry?')) setEnquiries(enquiries.filter(eq => eq.id !== id));
+    if (confirm('Delete this enquiry?')) saveEnquiries(enquiries.filter(eq => eq.id !== id));
   };
 
   const sidebarItems = [

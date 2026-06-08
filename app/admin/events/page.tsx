@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 
 interface Event {
@@ -17,20 +17,31 @@ export default function AdminEvents() {
   const [showForm, setShowForm] = useState(false);
   const [form, setForm] = useState({ title: '', date: '', time: '', venue: '', description: '' });
 
+  useEffect(() => {
+    const stored = localStorage.getItem('school_events');
+    if (stored) setEvents(JSON.parse(stored));
+  }, []);
+
+  const saveEvents = (updated: Event[]) => {
+    setEvents(updated);
+    localStorage.setItem('school_events', JSON.stringify(updated));
+  };
+
   const handleAdd = (e: React.FormEvent) => {
     e.preventDefault();
-    const newEvent: Event = { id: Date.now().toString(), ...form, status: 'Upcoming' };
-    setEvents([newEvent, ...events]);
+    const status = new Date(form.date) >= new Date() ? 'Upcoming' : 'Completed';
+    const newEvent: Event = { id: Date.now().toString(), ...form, status };
+    saveEvents([newEvent, ...events]);
     setForm({ title: '', date: '', time: '', venue: '', description: '' });
     setShowForm(false);
   };
 
   const toggleStatus = (id: string) => {
-    setEvents(events.map(ev => ev.id === id ? { ...ev, status: ev.status === 'Upcoming' ? 'Completed' : 'Upcoming' } : ev));
+    saveEvents(events.map(ev => ev.id === id ? { ...ev, status: ev.status === 'Upcoming' ? 'Completed' : 'Upcoming' } : ev));
   };
 
   const handleDelete = (id: string) => {
-    if (confirm('Delete this event?')) setEvents(events.filter(ev => ev.id !== id));
+    if (confirm('Delete this event?')) saveEvents(events.filter(ev => ev.id !== id));
   };
 
   return (
